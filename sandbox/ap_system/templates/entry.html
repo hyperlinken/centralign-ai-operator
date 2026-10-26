@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}{{ entry.id }}{% endblock %}
+{% block body %}
+<p><a href="{{ url_for('entries') }}">&larr; Back to entries</a></p>
+<div class="card" data-ap-id="{{ entry.id }}">
+  <h2>{{ entry.id }} <span class="pill">{{ entry.status }}</span></h2>
+  <p><strong>Vendor:</strong> <span class="vendor">{{ entry.vendor }}</span></p>
+  <p><strong>Vendor Invoice ID:</strong> <span class="invoice-id">{{ entry.invoice_id }}</span></p>
+  <p><strong>Amount:</strong> USD <span class="amount">{{ '%.2f'|format(entry.amount) }}</span></p>
+  <p><strong>Due date:</strong> <span class="due-date">{{ entry.due_date }}</span></p>
+  <p><strong>Notes:</strong> <span class="notes">{{ entry.notes }}</span></p>
+  <p class="meta">Submitted at {{ entry.created_at }}</p>
+</div>
+{% endblock %}

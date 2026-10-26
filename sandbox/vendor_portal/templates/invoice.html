@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}{{ inv.id }} — {{ inv.vendor }}{% endblock %}
+{% block body %}
+<p><a href="{{ url_for('dashboard') }}">&larr; Back to dashboard</a></p>
+<div class="card" data-invoice-id="{{ inv.id }}">
+  <h2>Invoice {{ inv.id }}</h2>
+  <p><strong>Vendor:</strong> <span class="vendor-name">{{ inv.vendor }}</span></p>
+  <p><strong>Amount:</strong> USD <span class="amount">{{ '%.2f'|format(inv.amount) }}</span></p>
+  <p><strong>Due date:</strong> <span class="due-date">{{ inv.due_date }}</span></p>
+  <p><strong>Issued:</strong> <span class="issued">{{ inv.issued }}</span></p>
+  <p><strong>Status:</strong> <span class="pill pill-{{ inv.status|lower }}">{{ inv.status }}</span></p>
+
+  <h3>Line items</h3>
+  <table>
+    <thead><tr><th>Description</th><th>Qty</th><th>Unit price</th><th>Line total</th></tr></thead>
+    <tbody>
+      {% for li in inv.line_items %}
+      <tr>
+        <td>{{ li.desc }}</td>
+        <td>{{ li.qty }}</td>
+        <td>{{ '%.2f'|format(li.unit) }}</td>
+        <td>{{ '%.2f'|format(li.qty * li.unit) }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

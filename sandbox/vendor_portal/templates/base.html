@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><title>{% block title %}Globex Vendor Portal{% endblock %}</title>
+<style>
+  body{font-family:system-ui,sans-serif;max-width:900px;margin:30px auto;color:#222}
+  header{border-bottom:2px solid #0b5394;padding-bottom:8px;margin-bottom:20px;display:flex;justify-content:space-between;align-items:baseline}
+  h1{margin:0;font-size:20pt;color:#0b5394}
+  .nav a{margin-left:12px;color:#0b5394;text-decoration:none}
+  .nav a:hover{text-decoration:underline}
+  table{width:100%;border-collapse:collapse;margin-top:10px}
+  th,td{text-align:left;padding:8px;border-bottom:1px solid #eee}
+  th{background:#f6f8fb;font-size:10pt}
+  .pill{display:inline-block;padding:2px 8px;border-radius:10px;font-size:9pt;font-weight:600}
+  .pill-open{background:#d9e8ff;color:#0b5394}
+  .pill-paid{background:#dff5e0;color:#1a7a3b}
+  form input[type=text],form input[type=password]{padding:7px;border:1px solid #ccc;border-radius:4px;width:260px}
+  button{padding:7px 14px;background:#0b5394;color:#fff;border:0;border-radius:4px;cursor:pointer}
+  .err{color:#b00;margin-top:8px}
+  .meta{color:#666;font-size:9.5pt}
+  .card{border:1px solid #e3e3e3;border-radius:6px;padding:16px;margin-top:12px}
+</style>
+</head>
+<body>
+<header>
+  <h1>Globex Vendor Portal</h1>
+  <div class="nav">
+    {% if session.get('user') %}
+      <a href="{{ url_for('dashboard') }}">Dashboard</a>
+      <a href="{{ url_for('logout') }}">Log out ({{ session['user'] }})</a>
+    {% endif %}
+  </div>
+</header>
+{% block body %}{% endblock %}
+</body>
+</html>

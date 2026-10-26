@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Invoices — Vendor Portal{% endblock %}
+{% block body %}
+<form method="get" action="{{ url_for('dashboard') }}">
+  <label>Filter by vendor:
+    <input type="text" name="vendor" id="vendor-filter" value="{{ vendor_filter }}" placeholder="e.g. Globex">
+  </label>
+  <button type="submit" id="apply-filter">Apply</button>
+</form>
+
+<table>
+  <thead>
+    <tr><th>Invoice</th><th>Vendor</th><th>Amount (USD)</th><th>Due</th><th>Issued</th><th>Status</th></tr>
+  </thead>
+  <tbody id="invoice-list">
+    {% for i in invoices %}
+    <tr data-invoice-id="{{ i.id }}">
+      <td><a href="{{ url_for('invoice_detail', invoice_id=i.id) }}">{{ i.id }}</a></td>
+      <td>{{ i.vendor }}</td>
+      <td class="amount">{{ '%.2f'|format(i.amount) }}</td>
+      <td class="due-date">{{ i.due_date }}</td>
+      <td>{{ i.issued }}</td>
+      <td><span class="pill pill-{{ i.status|lower }}">{{ i.status }}</span></td>
+    </tr>
+    {% else %}
+    <tr><td colspan="6" class="meta">No invoices match the filter.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

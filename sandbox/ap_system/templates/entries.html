@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Entries — AP{% endblock %}
+{% block body %}
+{% if missing %}<p class="err">Entry {{ missing }} not found.</p>{% endif %}
+<h2>Submitted invoices</h2>
+<table>
+  <thead>
+    <tr><th>AP ID</th><th>Vendor</th><th>Invoice</th><th>Amount</th><th>Due</th><th>Status</th><th>Submitted</th></tr>
+  </thead>
+  <tbody id="entries-list">
+    {% for e in entries %}
+    <tr data-ap-id="{{ e.id }}">
+      <td><a href="{{ url_for('entry_detail', ap_id=e.id) }}">{{ e.id }}</a></td>
+      <td>{{ e.vendor }}</td>
+      <td>{{ e.invoice_id }}</td>
+      <td>{{ '%.2f'|format(e.amount) }}</td>
+      <td>{{ e.due_date }}</td>
+      <td><span class="pill">{{ e.status }}</span></td>
+      <td class="meta">{{ e.created_at }}</td>
+    </tr>
+    {% else %}
+    <tr><td colspan="7" class="meta">No entries yet.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

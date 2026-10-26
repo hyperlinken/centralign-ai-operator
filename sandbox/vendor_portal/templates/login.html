@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Sign in — Vendor Portal{% endblock %}
+{% block body %}
+<div class="card">
+  <h2>Sign in</h2>
+  <form method="post" action="{{ url_for('login') }}">
+    <p><label>Username<br><input type="text" name="username" id="username" autofocus></label></p>
+    <p><label>Password<br><input type="password" name="password" id="password"></label></p>
+    <p><button type="submit" id="submit-login">Sign in</button></p>
+    {% if error %}<p class="err">{{ error }}</p>{% endif %}
+  </form>
+  <p class="meta">Sandbox credentials are documented in company_context/context.md.</p>
+</div>
+{% endblock %}

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><title>{% block title %}Acme AP System{% endblock %}</title>
+<style>
+  body{font-family:system-ui,sans-serif;max-width:900px;margin:30px auto;color:#222}
+  header{border-bottom:2px solid #1a7a3b;padding-bottom:8px;margin-bottom:20px;display:flex;justify-content:space-between;align-items:baseline}
+  h1{margin:0;font-size:20pt;color:#1a7a3b}
+  .nav a{margin-left:12px;color:#1a7a3b;text-decoration:none}
+  .nav a:hover{text-decoration:underline}
+  table{width:100%;border-collapse:collapse;margin-top:10px}
+  th,td{text-align:left;padding:8px;border-bottom:1px solid #eee}
+  th{background:#f2f8f3;font-size:10pt}
+  form input[type=text],form input[type=number],form textarea{padding:7px;border:1px solid #ccc;border-radius:4px;width:280px;font-family:inherit}
+  button{padding:7px 14px;background:#1a7a3b;color:#fff;border:0;border-radius:4px;cursor:pointer}
+  .pill{display:inline-block;padding:2px 8px;border-radius:10px;font-size:9pt;font-weight:600;background:#fff3c6;color:#8a6d00}
+  .err{color:#b00;margin-top:8px}
+  .card{border:1px solid #e3e3e3;border-radius:6px;padding:16px;margin-top:12px}
+  .meta{color:#666;font-size:9.5pt}
+</style>
+</head>
+<body>
+<header>
+  <h1>Acme AP System</h1>
+  <div class="nav">
+    <a href="{{ url_for('entries') }}">Entries</a>
+    <a href="{{ url_for('new_entry') }}" id="nav-new">New Entry</a>
+  </div>
+</header>
+{% block body %}{% endblock %}
+</body>
+</html>

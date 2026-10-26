@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}New AP Entry{% endblock %}
+{% block body %}
+<div class="card">
+  <h2>Record vendor invoice</h2>
+  {% if errors %}
+    <ul class="err">
+      {% for e in errors %}<li>{{ e }}</li>{% endfor %}
+    </ul>
+  {% endif %}
+  <form method="post" action="{{ url_for('new_entry') }}">
+    <p><label>Vendor<br><input type="text" name="vendor" id="vendor" value="{{ form.vendor or '' }}"></label></p>
+    <p><label>Vendor Invoice ID<br><input type="text" name="invoice_id" id="invoice_id" value="{{ form.invoice_id or '' }}"></label></p>
+    <p><label>Amount (USD)<br><input type="text" name="amount" id="amount" value="{{ form.amount or '' }}"></label></p>
+    <p><label>Due date (YYYY-MM-DD)<br><input type="text" name="due_date" id="due_date" value="{{ form.due_date or '' }}"></label></p>
+    <p><label>Notes<br><textarea name="notes" id="notes" rows="3" cols="40">{{ form.notes or '' }}</textarea></label></p>
+    <p><button type="submit" id="submit-entry">Submit for review</button></p>
+  </form>
+</div>
+{% endblock %}
